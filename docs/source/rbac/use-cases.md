@@ -1,3 +1,4 @@
+
 # Use Cases
 
 To determine which scopes a role should have, one can follow these steps:
@@ -7,18 +8,19 @@ To determine which scopes a role should have, one can follow these steps:
 3. Check which scopes are required to access the APIs
 4. Combine scopes and subscopes if applicable
 5. Customize the scopes with filters if needed
-6. Define the role with required scopes and assign to users/services/groups/tokens
+6. Define the role with required scopes and assign to `users/services/groups/tokens`
 
-Below, different use cases are presented on how to use the RBAC framework.
+Below, different use cases are presented on how to use the [RBAC framework](https://en.wikipedia.org/wiki/Role-based_access_control).
 
 ## Service to cull idle servers
 
 Finding and shutting down idle servers can save a lot of computational resources.
-We can make use of [jupyterhub-idle-culler](https://github.com/jupyterhub/jupyterhub-idle-culler) to manage this for us.
+**We can make use of [jupyterhub-idle-culler](https://github.com/jupyterhub/jupyterhub-idle-culler) to manage this for us.**
 Below follows a short tutorial on how to add a cull-idle service in the RBAC system.
 
-1. Install the cull-idle server script with `pip install jupyterhub-idle-culler`.
-2. Define a new service `idle-culler` and a new role for this service:
+1. Install the cull-idle server script with: 
+`pip install jupyterhub-idle-culler`
+4. Define a new service `idle-culler` and a new role for this service:
 
    ```python
    # in jupyterhub_config.py
@@ -52,7 +54,7 @@ Below follows a short tutorial on how to add a cull-idle service in the RBAC sys
    - `read:users:name`, `read:users:activity` to `admin:users` for deleting users.
    ```
 
-3. Restart JupyterHub to complete the process.
+5. Restart JupyterHub to complete the process.
 
 ## API launcher
 
@@ -60,7 +62,7 @@ A service capable of creating/removing users and launching multiple servers shou
 
 1. _POST_ and _DELETE /users_
 2. _POST_ and _DELETE /users/:name/server_ or _/users/:name/servers/:server_name_
-3. Creating/deleting servers
+3. Creating or deleting servers
 
 The scopes required to access the API enpoints:
 
